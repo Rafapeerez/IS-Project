@@ -12,7 +12,7 @@ void darAltaUsuario(int usuarios){
 
     char nombre[256], correo[256], contraseña[256];
     int ID;
-
+ 
     for (int cont = 0; cont < usuarios; cont++){
         cout << "¿Como se llama el usuario?" << endl;
         cin >> nombre;
