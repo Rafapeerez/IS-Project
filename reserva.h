@@ -18,6 +18,7 @@ class Reserva{
         int maquinas_totales_;
         int maquina_elegida_;
         int recursos_;
+        std::string fecha_;
         std::list<Maquina> maquinas_;
 
     public:
@@ -29,6 +30,8 @@ class Reserva{
         inline int getElegirMaquina(){return maquina_elegida_;}
         bool setElegirRecursos(int &recursos);
         inline int getElegirRecursos(){return recursos_;}
+        inline void setFecha(std::string fecha){fecha_=fecha;}
+        inline std::string getFecha(){return fecha_;}
 
 };
 #endif

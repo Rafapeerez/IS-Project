@@ -49,12 +49,13 @@ bool Reserva::setElegirMaquina(int &maquina){
 }
 
 bool Reserva::setElegirRecursos(int &recursos){
-    std::ifstream f("maquinas.txt");
+	std::ifstream f("maquinas.txt");
 	if(!f){
 		std::cout<<"Se ha producido un error al intentar abrir el fichero 'DNI.txt'\n";
 		EXIT_FAILURE;
 	}
-    maquinas_.clear();
+
+	maquinas_.clear();
 	Maquina m;
     std::string cadena;
 	getline(f, cadena, ',');
@@ -66,7 +67,7 @@ bool Reserva::setElegirRecursos(int &recursos){
 	    	    getline(f, cadena, ',');
 		        m.recur_totales=std::stoi(cadena);
     		    getline(f, cadena, '\n');
-	    	    m.recur_disp=m.recur_disp-recursos_;
+	    	    m.recur_disp=m.recur_disp-getElegirRecursos();
 		        maquinas_.push_back(m);
 		        getline(f, cadena, ',');
                 return true;
