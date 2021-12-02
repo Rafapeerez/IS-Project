@@ -11,8 +11,8 @@ int main(){
         std::cout<<"|                                              |\n";
         std::cout<<"|0. Salir del menu                             |\n";
         std::cout<<"|1. Mostrar maquinas disponibles               |\n";
-        std::cout<<"|----------------------------------------------|\n";
-        std::cout<<"|----------------------------------------------|\n";
+        std::cout<<"|2. Elegir maquina de la reserva               |\n";
+        std::cout<<"|3. Elegir recursos de la reserva              |\n";
         std::cout<<"|----------------------------------------------|\n";
         std::cout<<"|----------------------------------------------|\n";
         std::cout<<"|----------------------------------------------|\n";
@@ -29,6 +29,13 @@ int main(){
 
             case 1:
                 r.mostrarMaquinas();
+            break;
+
+            case 2:
+                int maq_elegida;
+                std::cout<<"Maquina seleccionada: "
+                std::cin>>maq_elegida;
+                setElegirMaquina(maq_elegida);
             break;
 
             default:

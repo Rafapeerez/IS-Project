@@ -39,3 +39,11 @@ void Reserva::mostrarMaquinas(){
     std::cout<<texto<<std::endl;
     fclose(f);
 }
+
+bool Reserva::setElegirMaquina(int &maquina){
+    if(maquina>0 && maquina<=8){
+        maquina_=maquina;
+        return true;
+    }
+    return false;
+}

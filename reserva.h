@@ -24,6 +24,8 @@ class Reserva{
         inline Reserva(){maquinas_totales_=8;}
         void setMaquinas();
         inline std::list<Maquina> getMaquinas(){return maquinas_;}
-        void mostrarMaquinas();   
+        void mostrarMaquinas();
+        bool setElegirMaquina(int &maquina);
+        inline void getElegirMaquina(){return maquina_elegida_();}
 };
 #endif
