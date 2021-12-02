@@ -1,39 +1,41 @@
 #include "reserva.h"
-#define maquinas 8
+#include <vector>
+#include <list>
+#include <iostream>
+#include <fstream>
 
-bool Reserva::setMaquinas(int &maquina){
-    if(maquina_>=0 && maquina>=8){
-        maquina_=maquina
-        return true;
+void Reserva::setMaquinas(){
+	std::ifstream f("maquinas.txt");
+	if(!f){
+		std::cout<<"Se ha producido un error al intentar abrir el fichero 'DNI.txt'\n";
+		EXIT_FAILURE;
+	}
+    maquinas_.clear();
+	Maquina m;
+	std::string cadena;
+	getline(f, cadena, ',');
+	while(!f.eof()){
+    		m.numero_maq=std::stoi(cadena);
+	    	getline(f, cadena, ',');
+		    m.recur_totales=std::stoi(cadena);
+    		getline(f, cadena, '\n');
+	    	m.recur_disp=std::stoi(cadena);
+		    maquinas_.push_back(m);
+		    getline(f, cadena, ',');
     }
-    return false;
 }
 
-bool Reserva::setReserva(int recursos){
-    if(recursos>0 && recursos<=recurs_disp[maquina_]){
-        recursos_=recursos;
-        recurs_disp[maquina_]=recursos_;
-        return true;
-    }
-    return false;
-};
+void Reserva::mostrarMaquinas(){
+    FILE* f;
+    long medida;
+    char* texto;
+    f=fopen("maquinas.txt", "r");
+    fseek(f, 0, SEEK_END);
+    medida=ftell(f);
+    rewind(f);
 
-void Reserva::escribeMaquinas(){
-    std::ofstream f("maquinas.txt");
-    if(!f){
-        std::cout<<"ERROR al abrir el archivo\n"
-        EXIT_FAILURE;
-    }
-    std::
-}
-
-void Reserva::getinicioLista(){
-    std::ofstream
-    if(!f){
-        std::cout
-        EXIT_FAILURE;
-    }
-    std::list<Maquinas>:iterator j;
-    j=Maquinas_.begin();
-    for(int i=0; i<maquinas)
+    texto=(char*)malloc (sizeof(char)*medida);
+    fread(texto, medida+1, 1, f);
+    std::cout<<texto<<std::endl;
+    fclose(f);
 }

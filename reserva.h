@@ -8,30 +8,22 @@
 
 struct Maquina{
     int numero_maq;
-    std::vector<int> recur_totales;
-    std::vector<int> recur_disp
-
-    
+    int recur_totales;
+    int recur_disp;
 };
 
 
 class Reserva{
     private:
-        int maquina_elegida;
+        int maquinas_totales_;
+        int maquina_elegida_;
         int recursos_;
-        std::string fecha;
-        std::list<maquina>=maquinas_
+        std::list<Maquina> maquinas_;
 
     public:
-        inline void Reserva(std::string userID){userID_=getUserID();}
-        void setinicioList(numero_maq=8; std::vector<int> recur_totales[numero_maq]={8, 8, 8, 8, 8, 8, 8, 8}; std::vector<int> recur_disp[numero_maq]={8, 8, 8, 8, 8, 8, 8, 8};);
-        inline std::list<maquina> setinicioLista(){return maquinas_;}
-        void getinicioLista();
-        bool setReserva(int maquinas){};
-        bool setReserva(int recursos){};
-        
-
-
-    
+        inline Reserva(){maquinas_totales_=8;}
+        void setMaquinas();
+        inline std::list<Maquina> getMaquinas(){return maquinas_;}
+        void mostrarMaquinas();   
 };
 #endif
