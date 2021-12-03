@@ -83,3 +83,14 @@ bool Reserva::setElegirRecursos(int &recursos){
     }
     return false;
 }
+
+bool Reserva::setConfirmacion(confirmacion_op){
+	if(confirmacion_op==1){
+		confirmacion_op_=confirmacion_op;
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+

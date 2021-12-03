@@ -11,8 +11,8 @@ int main(){
         std::cout<<"|                                              |\n";
         std::cout<<"|0. Salir del menu                             |\n";
         std::cout<<"|1. Mostrar maquinas disponibles               |\n";
-        std::cout<<"|2. Datos reserva                              |\n";
-        std::cout<<"|                                              |\n";
+        std::cout<<"|2. Introducir Datos reserva                   |\n";
+        std::cout<<"|3. Confirmar operacion                        |\n";
         std::cout<<"|                                              |\n";
         std::cout<<"|----------------------------------------------|\n";
         std::cout<<"|----------------------------------------------|\n";
@@ -31,7 +31,7 @@ int main(){
                 r.mostrarMaquinas();
             break;
 
-            case 2:
+            case 2: 
                 int maq_elegida;
                 std::cout<<"Maquina seleccionada: ";
                 std::cin>>maq_elegida;
@@ -44,6 +44,10 @@ int main(){
                 std::cout<<"Fecha: ";
                 std::cin>>fecha;
                 r.setFecha(fecha);
+                int confirmacion_op;
+                cout<<"Si desea confirmar operacion pulse 1 para continuar"
+                cin>>confirmacion_op;
+                r.setConfirmacion(confirmacion_op);
             break;
 
             default:
