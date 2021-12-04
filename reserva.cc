@@ -5,7 +5,7 @@
 #include <fstream>
 
 void Reserva::setMaquinas(){
-	std::ifstream f("maquinas.txt");
+	std::ifstream f("maquina.txt");
 	if(!f){
 		std::cout<<"Se ha producido un error al intentar abrir el fichero 'maquinas.txt'\n";
 		EXIT_FAILURE;
@@ -23,6 +23,23 @@ void Reserva::setMaquinas(){
 		    maquinas_.push_back(m);
 		    getline(f, cadena, ',');
     }
+}
+
+void Reserva::modificaMaquinas(){
+	std::fstream f("maquinas.txt");
+	if(!f){
+		std::cout<<"Se ha producido un error al intentar abrir el dichero 'maquinas.txt\n";
+		EXIT_FAILURE;
+	}
+	maquinas_.clear();
+	Maquina m;
+	for(int i=0; i<9; i++){
+		if(m.numero_maq==maquina_elegida_){
+			m.recur_disp-=recursos_;
+		}
+		
+	}
+	
 }
 
 void Reserva::mostrarMaquinas(){
