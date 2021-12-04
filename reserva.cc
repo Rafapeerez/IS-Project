@@ -4,104 +4,51 @@
 #include <iostream>
 #include <fstream>
 
-void Reserva::setMaquinas(){
-	std::ifstream f("maquina.txt");
-	if(!f){
-		std::cout<<"Se ha producido un error al intentar abrir el fichero 'maquinas.txt'\n";
-		EXIT_FAILURE;
-	}
-    maquinas_.clear();
-	Maquina m;
-	std::string cadena;
-	getline(f, cadena, ',');
-	while(!f.eof()){
-    		m.numero_maq=std::stoi(cadena);
-	    	getline(f, cadena, ',');
-		    m.recur_totales=std::stoi(cadena);
-    		getline(f, cadena, '\n');
-	    	m.recur_disp=std::stoi(cadena);
-		    maquinas_.push_back(m);
-		    getline(f, cadena, ',');
-    }
+
+
+void Reserva::mostrarMenuReserva(){//Muestra el menu reserva por pantalla
+	std::cout<<"\n|______________________________________________|\n";
+        std::cout<<"|                    MENU                      |\n";
+        std::cout<<"|______________________________________________|\n";
+        std::cout<<"|                                              |\n";
+        std::cout<<"|0. Salir del menu                             |\n";
+        std::cout<<"|1. Mostrar maquinas disponibles               |\n";
+        std::cout<<"|2. Mostrar fechas ocupadas                    |\n";
+        std::cout<<"|3. Introducir Datos reserva                   |\n";
+		std::cout<<"|Consejo: Antes de reserva, ver disponibilidad |\n"; 
+        std::cout<<"|______________________________________________|\n\n";
 }
 
-void Reserva::modificaMaquinas(){
-	std::fstream f("maquinas.txt");
-	if(!f){
-		std::cout<<"Se ha producido un error al intentar abrir el dichero 'maquinas.txt\n";
-		EXIT_FAILURE;
+void Reserva::mostrarMaquinas(){//Muestra las maquinas junto con los recursos totales + disponibles
+    std::cout<<"Maquina X, RECURSOS_TOTALES, RECURSOS_DISPONIBLES\n";
+	int j=0;
+	for(int i=1; i<=8; i++){
+		std::cout<<"Maquina "<<i<<", "<<8<<", "<<vector_recur_disp[j]<<"\n";
+		j++;
 	}
-	maquinas_.clear();
-	Maquina m;
-	for(int i=0; i<9; i++){
-		if(m.numero_maq==maquina_elegida_){
-			m.recur_disp-=recursos_;
-		}
-		
-	}
-	
 }
 
-void Reserva::mostrarMaquinas(){
-    FILE* f;
-    long medida;
-    char* texto;
-    f=fopen("maquinas.txt", "r");
-    fseek(f, 0, SEEK_END);
-    medida=ftell(f);
-    rewind(f);
-
-    texto=(char*)malloc (sizeof(char)*medida);
-    fread(texto, medida+1, 1, f);
-    std::cout<<texto<<std::endl;
-    fclose(f);
-}
-
-bool Reserva::setElegirMaquina(int &maquina){
+bool Reserva::setElegirMaquina(int &maquina){//Booleano que se encarga de elegir un valor real dentro de la maquina, si se encuentra fuera del valor sale del programa
     if(maquina>0 && maquina<=8){
         maquina_elegida_=maquina;
         return true;
     }
+	exit(0);//Sale del programa si se produce un error
     return false;
 }
 
-bool Reserva::setElegirRecursos(int &recursos){
-	std::ifstream f("maquinas.txt");
-	if(!f){
-		std::cout<<"Se ha producido un error al intentar abrir el fichero 'DNI.txt'\n";
-		EXIT_FAILURE;
+bool Reserva::setElegirRecursos(int recursos){
+	int maq_elegida=getElegirMaquina();
+	if(vector_recur_disp[maq_elegida-1]>=recursos){
+		recursos_=recursos;
+ 		vector_recur_disp[maq_elegida-1]=vector_recur_disp[maq_elegida-1]-recursos_;
+		return true;
 	}
-
-	maquinas_.clear();
-	Maquina m;
-    std::string cadena;
-	std::getline(f, cadena, ',');
-	while(!f.eof()){
-        if(m.numero_maq==maquina_elegida_){
-            if(recursos>0 && recursos<=m.recur_disp){
-                recursos_=recursos;
-                m.numero_maq=std::stoi(cadena);
-	    	    getline(f, cadena, ',');
-		        m.recur_totales=std::stoi(cadena);
-    		    getline(f, cadena, '\n');
-	    	    m.recur_disp=m.recur_disp-getElegirRecursos();
-		        maquinas_.push_back(m);
-		        getline(f, cadena, ',');
-                return true;
-            }
-	    }
-        m.numero_maq=std::stoi(cadena);
-	    	getline(f, cadena, ',');
-		    m.recur_totales=std::stoi(cadena);
-    		getline(f, cadena, '\n');
-	    	m.recur_disp=std::stoi(cadena);
-		    maquinas_.push_back(m);
-		    getline(f, cadena, ',');
-    }
-    return false;
+    exit(0);
+	return false;
 }
 
-bool Reserva::setConfirmacion(int confirmacion_op){
+bool Reserva::setConfirmacion(int confirmacion_op){//Se confirma operacion, si se obtiene un valor distinto a 1, retorna un valor falso
 	if(confirmacion_op==1){
 		confirmacion_op_=confirmacion_op;
 		return true;
@@ -111,7 +58,7 @@ bool Reserva::setConfirmacion(int confirmacion_op){
 	}
 }
 
-void Reserva::setFecha(){
+void Reserva::setFecha(){//Se genera fechas.txt que muestra las fechas que se encuentra ocupadas
     std::ifstream f("fechas.txt");
 	if(!f){
 		std::cout<<"Se ha producido un error al intentar abrir el fichero 'fechas.txt'\n";
@@ -136,7 +83,7 @@ void Reserva::setFecha(){
     }
 }
 
-void Reserva::modificaFechasOcupadas(int fecha_maquina, std::string fecha_inicio, std::string hora_inicio, std::string fecha_final, std::string hora_final){
+void Reserva::modificaFechasOcupadas(int fecha_maquina, std::string fecha_inicio, std::string hora_inicio, std::string fecha_final, std::string hora_final){//Modifica fechas.txt colocando el valor correspondiente de la reserva que se acaba de introducir 
 	std::ofstream out;
 	std::string fecha_maq=std::to_string(fecha_maquina);
 	out.open("fechas.txt", std::ios::app);
@@ -145,7 +92,7 @@ void Reserva::modificaFechasOcupadas(int fecha_maquina, std::string fecha_inicio
 	
 }
 
-void Reserva::mostrarFechasOcupadas(){
+void Reserva::mostrarFechasOcupadas(){//Muestra el valor de las fechas ocupadas sin mostrar los usuarios que han realizado las reservas
     	FILE* f;
     	long medida;
     	char* texto;
@@ -161,5 +108,26 @@ void Reserva::mostrarFechasOcupadas(){
     	fclose(f);
 }
 
+bool Reserva::comprobacionHora(std::string hora){
+	if(stoi(hora)>=00.00 && stoi(hora)<=24.00){
+		return true;
+	}
+	std::cout<<"ERROR al introducir la fecha\n";
+	exit(0);
+	return false;
+}
 
+bool Reserva::comprobarHoraDiaIgual(std::string fecha_inicio, std::string hora_inicio, std::string fecha_final, std::string hora_final){
+	if(fecha_inicio==fecha_final){
+        if(hora_inicio<hora_final){
+            return true;
+        }
+		else{
+			std::cout<<"ERROR al introducir una hora final menor que la hora inicial en el mismo dia\n";
+			exit(0);
+    		return false;
+		}
+    }
+	return true;
+}
 
