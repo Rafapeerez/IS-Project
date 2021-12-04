@@ -7,7 +7,7 @@
 void Reserva::setMaquinas(){
 	std::ifstream f("maquinas.txt");
 	if(!f){
-		std::cout<<"Se ha producido un error al intentar abrir el fichero 'DNI.txt'\n";
+		std::cout<<"Se ha producido un error al intentar abrir el fichero 'maquinas.txt'\n";
 		EXIT_FAILURE;
 	}
     maquinas_.clear();
@@ -58,7 +58,7 @@ bool Reserva::setElegirRecursos(int &recursos){
 	maquinas_.clear();
 	Maquina m;
     std::string cadena;
-	getline(f, cadena, ',');
+	std::getline(f, cadena, ',');
 	while(!f.eof()){
         if(m.numero_maq==maquina_elegida_){
             if(recursos>0 && recursos<=m.recur_disp){
@@ -84,7 +84,7 @@ bool Reserva::setElegirRecursos(int &recursos){
     return false;
 }
 
-bool Reserva::setConfirmacion(confirmacion_op){
+bool Reserva::setConfirmacion(int confirmacion_op){
 	if(confirmacion_op==1){
 		confirmacion_op_=confirmacion_op;
 		return true;
@@ -93,4 +93,56 @@ bool Reserva::setConfirmacion(confirmacion_op){
 		return false;
 	}
 }
+
+void Reserva::setFecha(){
+    std::ifstream f("fechas.txt");
+	if(!f){
+		std::cout<<"Se ha producido un error al intentar abrir el fichero 'fechas.txt'\n";
+		EXIT_FAILURE;
+	}
+	fecha_.clear();
+	Fecha fec;
+	std::string cadena;
+	getline(f, cadena, ',');
+	while(!f.eof()){
+			fec.fecha_maquina=std::stoi(cadena);
+			getline(f, cadena, ',');
+    		fec.fecha_inicio=cadena;
+	    	getline(f, cadena, ',');
+			fec.hora_inicio=cadena;
+	    	getline(f, cadena, ',');
+		    fec.fecha_final=cadena;
+			getline(f, cadena, ',');
+			fec.hora_final=cadena;
+		    fecha_.push_back(fec);
+		    getline(f, cadena, ',');
+    }
+}
+
+void Reserva::modificaFechasOcupadas(int fecha_maquina, std::string fecha_inicio, std::string hora_inicio, std::string fecha_final, std::string hora_final){
+	std::ofstream out;
+	std::string fecha_maq=std::to_string(fecha_maquina);
+	out.open("fechas.txt", std::ios::app);
+	std::string cadena= fecha_maq + ", " + fecha_inicio + ", " + hora_inicio + ", "  + fecha_final+ ", "  + hora_final + "\n";
+	out<<cadena; 
+	
+}
+
+void Reserva::mostrarFechasOcupadas(){
+    	FILE* f;
+    	long medida;
+    	char* texto;
+		const char* nombre="fechas.txt";
+	   	f=fopen(nombre, "r");
+    	fseek(f, 0, SEEK_END);
+    	medida=ftell(f);
+    	rewind(f);
+
+   		texto=(char*)malloc (sizeof(char)*medida);
+   	 	fread(texto, medida+1, 1, f);
+    	std::cout<<texto<<std::endl;
+    	fclose(f);
+}
+
+
 
