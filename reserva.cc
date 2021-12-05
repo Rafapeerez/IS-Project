@@ -3,29 +3,36 @@
 #include <list>
 #include <iostream>
 #include <fstream>
-
+#define ANSI_COLOR_RED "\x1b[31m"
+#define ANSI_COLOR_RESET "\x1b[39m"
+#define ANSI_COLOR_GREEN "\x1b[32m"
 
 
 void Reserva::mostrarMenuReserva(){//Muestra el menu reserva por pantalla
-	std::cout<<"\n|______________________________________________|\n";
+	std::cout<<"\n ______________________________________________\n";
         std::cout<<"|                    MENU                      |\n";
         std::cout<<"|______________________________________________|\n";
         std::cout<<"|                                              |\n";
+		std::cout<<"|Consejo: Antes de reserva, ver disponibilidad |\n"; 
+		std::cout<<"|           de las maquinas y fechas           |\n"; 
+		std::cout<<"|______________________________________________|\n";
         std::cout<<"|0. Salir del menu                             |\n";
         std::cout<<"|1. Mostrar maquinas disponibles               |\n";
         std::cout<<"|2. Mostrar fechas ocupadas                    |\n";
         std::cout<<"|3. Introducir Datos reserva                   |\n";
-		std::cout<<"|Consejo: Antes de reserva, ver disponibilidad |\n"; 
         std::cout<<"|______________________________________________|\n\n";
 }
 
 void Reserva::mostrarMaquinas(){//Muestra las maquinas junto con los recursos totales + disponibles
-    std::cout<<"Maquina X, RECURSOS_TOTALES, RECURSOS_DISPONIBLES\n";
+    std::cout<<"___________________________________________________\n";
+	std::cout<<"|Maquina X| RECURSOS_TOTALES| RECURSOS_DISPONIBLES|\n";
+	std::cout<<"___________________________________________________\n";
 	int j=0;
 	for(int i=1; i<=8; i++){
-		std::cout<<"Maquina "<<i<<", "<<8<<", "<<vector_recur_disp[j]<<"\n";
+		std::cout<<"|Maquina "<<i<<"|	    "<<8<<"       |		"<<vector_recur_disp[j]<<"	   |\n";
 		j++;
 	}
+	std::cout<<"|__________________________________________________|\n";
 }
 
 bool Reserva::setElegirMaquina(int &maquina){//Booleano que se encarga de elegir un valor real dentro de la maquina, si se encuentra fuera del valor sale del programa
@@ -33,6 +40,7 @@ bool Reserva::setElegirMaquina(int &maquina){//Booleano que se encarga de elegir
         maquina_elegida_=maquina;
         return true;
     }
+	std::cout<<ANSI_COLOR_RED "ERROR MAQUINA NO DISPONIBLE\n" ANSI_COLOR_RESET;
 	exit(0);//Sale del programa si se produce un error
     return false;
 }
@@ -44,6 +52,7 @@ bool Reserva::setElegirRecursos(int recursos){
  		vector_recur_disp[maq_elegida-1]=vector_recur_disp[maq_elegida-1]-recursos_;
 		return true;
 	}
+	std::cout<<ANSI_COLOR_RED "ERROR RECURSOS NO DISPONIBLES PARA DICHA MAQUINA, TEN EN CUENTA LA DISPONIBILIDAD\n" ANSI_COLOR_RESET;
     exit(0);
 	return false;
 }
@@ -54,6 +63,7 @@ bool Reserva::setConfirmacion(int confirmacion_op){//Se confirma operacion, si s
 		return true;
 	}
 	else{
+		std::cout<<ANSI_COLOR_RED "No se incluyo la reserva\n" ANSI_COLOR_RESET;
 		return false;
 	}
 }
@@ -112,7 +122,18 @@ bool Reserva::comprobacionHora(std::string hora){
 	if(stoi(hora)>=00.00 && stoi(hora)<=24.00){
 		return true;
 	}
-	std::cout<<"ERROR al introducir la fecha\n";
+	std::cout<<ANSI_COLOR_RED "ERROR al introducir la hora\n" ANSI_COLOR_RESET;
+	exit(0);
+	return false;
+}
+
+bool Reserva::comprobacionFecha(std::string fecha){//Comprueba que la fecha es correcta
+	std::string cadena="01/01/2021";
+	std::string cadena2="31/12/2030";
+	if(fecha>cadena && fecha<=cadena2){
+		return true;
+	}
+	std::cout<<ANSI_COLOR_RED "ERROR al introducir la fecha\n" ANSI_COLOR_RESET;
 	exit(0);
 	return false;
 }
@@ -123,7 +144,7 @@ bool Reserva::comprobarHoraDiaIgual(std::string fecha_inicio, std::string hora_i
             return true;
         }
 		else{
-			std::cout<<"ERROR al introducir una hora final menor que la hora inicial en el mismo dia\n";
+			std::cout<<ANSI_COLOR_RED "ERROR al introducir una hora final menor que la hora inicial en el mismo dia\n" ANSI_COLOR_RESET;
 			exit(0);
     		return false;
 		}

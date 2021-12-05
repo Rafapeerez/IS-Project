@@ -46,8 +46,9 @@ class Reserva{ //CLASE RESERVA
         inline std::list<Fecha> getFecha(){return fecha_;};//Retorna el fichero fecha_
         void modificaFechasOcupadas(int fecha_maq, std::string fecha_inicio, std::string hora_inicio, std::string fecha_final, std::string hora_final);//Modifica fechas.txt colocando el valor correspondiente de la reserva que se acaba de introducir 
         void mostrarFechasOcupadas(); //Muestra el valor de las fechas ocupadas sin mostrar los usuarios que han realizado las reservas
-        bool comprobacionHora(std::string hora);
-        bool comprobarHoraDiaIgual(std::string fecha_inicio, std::string hora_inicio, std::string fecha_final, std::string hora_final);
+        bool comprobacionHora(std::string hora);//Comprueba que la hora es correcta
+        bool comprobacionFecha(std::string fecha);//Comprueba que la fecha es correcta
+        bool comprobarHoraDiaIgual(std::string fecha_inicio, std::string hora_inicio, std::string fecha_final, std::string hora_final);//Comprueba que en dias igual la hora de inicio es menor que la final
         
 };
 #endif
