@@ -11,7 +11,8 @@ Usuario::Usuario(string nombre, string correo=" ", string contraseña=" ", int I
 }
 
 void Usuario::darAltaUsuario(int usuarios){
-    ofstream fichero("Usuarios.txt");
+    
+    fstream fichero("Usuarios.txt", fstream::app);
     if(!fichero){
         cout<<"Ha ocurrido un error al intentar abrir el fichero 'BaseDatos.txt' \n";
         exit(EXIT_FAILURE);
