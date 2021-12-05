@@ -1,29 +1,40 @@
 #include <fstream>
 #include <iostream>
+#include "usuario.h"
 using namespace std;
 
-void darAltaUsuario(int usuarios){
-    ofstream fichero("Usuarios.txt");
+Usuario::Usuario(string nombre, string correo=" ", string contraseña=" ", int ID=0){
+    nombre_ = nombre;
+    correo_ = correo;
+    contraseña_ = contraseña;
+    ID_ = ID;
+}
 
+void Usuario::darAltaUsuario(int usuarios){
+    ofstream fichero("Usuarios.txt");
     if(!fichero){
         cout<<"Ha ocurrido un error al intentar abrir el fichero 'BaseDatos.txt' \n";
         exit(EXIT_FAILURE);
     }
 
-    char nombre[256], correo[256], contraseña[256];
+    std::string nombre, correo, contraseña;
     int ID;
 
     for (int cont = 0; cont < usuarios; cont++){
         cout << "¿Como se llama el usuario?" << endl;
         cin >> nombre;
+        setNombre(nombre);
         cout << "¿Cual es el correo del usuario?" << endl;
         cin >> correo;
+        setCorreo(correo);
         cout << "Determine una contraseña por defecto para el usuario." << endl;
         cin >> contraseña;
+        setContraseña(contraseña);
         cout << "Determine un ID para el usuario." << endl;
         cin >> ID;
+        setID(ID);
 
-        fichero << nombre << " " << correo << " " << contraseña << " " << ID << endl;
+        fichero << getNombre() << " " << getCorreo() << " " << getContraseña() << " " << getID() << endl;
     }
 
     fichero.close();
