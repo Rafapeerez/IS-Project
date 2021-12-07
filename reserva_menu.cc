@@ -1,6 +1,10 @@
 #include "reserva.h"
 #include "reserva.cc"
 #include <stdio.h>
+#include "usuario.h"
+#include "usuario.cc"
+#include "recursos.h"
+#include "recursos.cc"
 #define ANSI_COLOR_RED "\x1b[31m"
 #define ANSI_COLOR_RESET "\x1b[39m"
 #define ANSI_COLOR_GREEN "\x1b[32m"
@@ -41,29 +45,43 @@ int main(){
                     exit(0);
                 break;
 
-                case 1:
+                case 1:{
                     char confirmacion1;
                     std::cout<<ANSI_COLOR_RED "¿Estas seguro de que tienes acceso al control de los usuarios? y/n \n" ANSI_COLOR_RESET; 
                     std::cin>>confirmacion1;
                     if(confirmacion1!='y'){
                         exit(0);
                     }
-                    //CODIGO RAFA
-                break;
+                    Usuario user(" ");
+                    int numeroUsuarios = 0;
+                    std::cout << "¿Cuantos usuarios quiere dar de alta?" << endl;
+                    std::cin >> numeroUsuarios;
+                    user.darAltaUsuario(numeroUsuarios);
+                }break;
 
                 case 2:
                 char confirmacion2;
                     std::cout<<ANSI_COLOR_RED "¿Estas seguro de que tienes acceso al control de las maquinas? y/n \n" ANSI_COLOR_RESET; 
                     std::cin>>confirmacion2;
-                    if(confirmacion1!='y'){
+                    if(confirmacion2!='y'){
                         exit(0);
                     }
                     //CODIGO ANTONIO
                 break;
 
                 case 3:
-                    //CODIGO CHEMA
-                break;
+                        Recursos a;
+                        int recursos;
+                        std::cout<<"Introduzca el numero de recursos que quieres reservar: ";
+                        std::cin>>recursos;
+
+                     if(a.setcomprueba(recursos) ){
+                       std::cout<<ANSI_COLOR_GREEN "El usuario podra reserva como maximo "<< a.getcomprueba() <<"\n" ANSI_COLOR_RESET;
+                    }
+                    else{
+                        std::cout<<ANSI_COLOR_RED "No se pueden resevar esos recursos\n" ANSI_COLOR_RESET;             
+                    }
+                    break;
             }
  
         }
