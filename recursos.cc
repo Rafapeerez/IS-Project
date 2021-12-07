@@ -4,8 +4,8 @@
 
 
 	bool Reserva::setcomprueba(int recursosmaquina){
-		if(recursosmaquina>0 && recursosmaquina<8){
-			recursosmaquina_=recursosmaquina; 	
+		if(recursosmaquina>0 && recursosmaquina<=8){
+			recursosmaquina_=recursosmaquina;
 			return true;
 
 		}

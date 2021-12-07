@@ -10,7 +10,7 @@ class Reserva{ //CLASE RECURSOS
         int recursosmaquina_;
 
     public:
-    Reserva(int recursosmaquina = 0);
+    inline Reserva(){recursosmaquina_;}
 
         bool setcomprueba(int recursosmaquina); 
         inline int getcomprueba()const {return recursosmaquina_;}
