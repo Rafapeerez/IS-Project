@@ -10,7 +10,7 @@
         std::cin>>recursos;
 
         if(a.setcomprueba(recursos) ){
-            std::cout<<"Se pueden reservar esos recursos!!!!\n";
+            std::cout<<"Se pueden reservar esos recursos!!\n";
         }
         else{
             std::cout<<"No se pueden resevar esos recursos\n";             
