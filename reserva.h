@@ -39,7 +39,6 @@ class Reserva{ //CLASE RESERVA
         bool comprobacionHora(std::string hora);//Comprueba que la hora es correcta
         bool comprobacionFecha(std::string fecha);//Comprueba que la fecha es correcta
         bool comprobarHoraDiaIgual(std::string fecha_inicio, std::string hora_inicio, std::string fecha_final, std::string hora_final);//Comprueba que en dias igual la hora de inicio es menor que la final
-        void menu();
         
 };
 #endif
