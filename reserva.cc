@@ -153,6 +153,7 @@ bool Reserva::comprobarHoraDiaIgual(std::string fecha_inicio, std::string hora_i
 
 
 void Reserva::menu(){
+	Fecha f;
     int operacion=1;
     mostrarMenuReserva();
 
@@ -201,26 +202,26 @@ void Reserva::menu(){
                 
                 std::cout<<ANSI_COLOR_RED "ATENCION: Las fechas se introducira DD/MM/AAAA y las horas HH.MM\n" ANSI_COLOR_RESET;
                 std::cout<<"Introduce el dia de inicio de la reserva: ";
-                std::cin>>fecha_inicio;
-                comprobacionFecha(fecha_inicio);
+                std::cin>>f.fecha_inicio;
+                comprobacionFecha(f.fecha_inicio);
 
                 std::cout<<"Introduce la hora de inicio de la reserva: ";
-                std::cin>>hora_inicio;
-                comprobacionHora(hora_inicio);
+                std::cin>>f.hora_inicio;
+                comprobacionHora(f.hora_inicio);
 
                 std::cout<<"Introduce el dia de final de la reserva: ";
-                std::cin>>fecha_final;
-                comprobacionFecha(fecha_final);
+                std::cin>>f.fecha_final;
+                comprobacionFecha(f.fecha_final);
                 
-                if(fecha_inicio>fecha_final){
+                if(f.fecha_inicio>f.fecha_final){
                     std::cout<<ANSI_COLOR_RED "ERROR al colocar el fecha. La fecha de inicio es posterior a la final\n" ANSI_COLOR_RESET;
                     exit(0);
                 }
 
                 std::cout<<"Introduce la hora de final de la reserva: ";
-                std::cin>>hora_final;
-                comprobacionHora(hora_final);
-                comprobarHoraDiaIgual(fecha_inicio, hora_inicio, fecha_final, hora_final);
+                std::cin>>f.hora_final;
+                comprobacionHora(f.hora_final);
+                comprobarHoraDiaIgual(f.fecha_inicio, f.hora_inicio, f.fecha_final, f.hora_final);
 
                 int confirmacion_op;
                 std::cout<<"¿Estas seguro de realizar la reserva? Si es asi pulse 1\n";
@@ -229,7 +230,7 @@ void Reserva::menu(){
 
                 std::cout<<ANSI_COLOR_GREEN "DATOS CORRECTOS, AÑADIDOS CORRECTAMENTE" ANSI_COLOR_RESET;
                 fecha_maquina=getElegirMaquina();
-                modificaFechasOcupadas(fecha_maquina, fecha_inicio, hora_inicio, fecha_final, hora_final);
+                modificaFechasOcupadas(f.fecha_maquina, f.fecha_inicio, f.hora_inicio, f.fecha_final, f.hora_final);
                 std::cout<<"\n";
                 mostrarMenuReserva();
             
