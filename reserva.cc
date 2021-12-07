@@ -7,7 +7,6 @@
 #define ANSI_COLOR_RESET "\x1b[39m"
 #define ANSI_COLOR_GREEN "\x1b[32m"
 
-
 void Reserva::mostrarMenuReserva(){//Muestra el menu reserva por pantalla
 	std::cout<<"\n ______________________________________________\n";
         std::cout<<"|                    MENU                      |\n";
@@ -151,4 +150,98 @@ bool Reserva::comprobarHoraDiaIgual(std::string fecha_inicio, std::string hora_i
     }
 	return true;
 }
+
+
+void Reserva::menu(){
+    int operacion=1;
+    mostrarMenuReserva();
+
+    while(operacion!=0){
+        
+        std::cout<<"\nSu eleccion: ";
+        std::cin>>operacion;
+        std::cout<<"\n";
+
+        switch(operacion){
+            
+            case 0:
+                system("clear");
+                mostrarMenuReserva();
+                std::cout<<"Hasta pronto\n";
+                std::cout<<"\n";
+            break;
+
+            
+            case 1:
+                system("clear");
+                mostrarMenuReserva();
+                mostrarMaquinas();
+            break;
+
+
+            case 2:
+                system("clear");
+                mostrarMenuReserva();
+                mostrarFechasOcupadas();
+            break;
+
+
+            case 3: 
+                system("clear");
+                std::cout<<ANSI_COLOR_RED "¡¡¡CUIDADO!!! SI SE INTRODUCE UN DATO INCORRECTO, SE SALDRA DEL PROGRAMA Y NO SE GUARDARA LA RESERVA\n" ANSI_COLOR_RESET;
+                int maq_elegida;//Introduce la maquina a seleccionar
+                std::cout<<"Maquina seleccionada (MAX. 8): ";
+                std::cin>>maq_elegida;
+                setElegirMaquina(maq_elegida);
+
+                int recursos;//Introduce los recursos a seleccionar de dicha maquina
+                std::cout<<"Recursos seleccionados (MAX. TODAS 8): ";
+                std::cin>>recursos;
+                setElegirRecursos(recursos);
+                
+                std::cout<<ANSI_COLOR_RED "ATENCION: Las fechas se introducira DD/MM/AAAA y las horas HH.MM\n" ANSI_COLOR_RESET;
+                std::cout<<"Introduce el dia de inicio de la reserva: ";
+                std::cin>>fecha_inicio;
+                comprobacionFecha(fecha_inicio);
+
+                std::cout<<"Introduce la hora de inicio de la reserva: ";
+                std::cin>>hora_inicio;
+                comprobacionHora(hora_inicio);
+
+                std::cout<<"Introduce el dia de final de la reserva: ";
+                std::cin>>fecha_final;
+                comprobacionFecha(fecha_final);
+                
+                if(fecha_inicio>fecha_final){
+                    std::cout<<ANSI_COLOR_RED "ERROR al colocar el fecha. La fecha de inicio es posterior a la final\n" ANSI_COLOR_RESET;
+                    exit(0);
+                }
+
+                std::cout<<"Introduce la hora de final de la reserva: ";
+                std::cin>>hora_final;
+                comprobacionHora(hora_final);
+                comprobarHoraDiaIgual(fecha_inicio, hora_inicio, fecha_final, hora_final);
+
+                int confirmacion_op;
+                std::cout<<"¿Estas seguro de realizar la reserva? Si es asi pulse 1\n";
+                std::cin>>confirmacion_op;
+                setConfirmacion(confirmacion_op);
+
+                std::cout<<ANSI_COLOR_GREEN "DATOS CORRECTOS, AÑADIDOS CORRECTAMENTE" ANSI_COLOR_RESET;
+                fecha_maquina=getElegirMaquina();
+                modificaFechasOcupadas(fecha_maquina, fecha_inicio, hora_inicio, fecha_final, hora_final);
+                std::cout<<"\n";
+                mostrarMenuReserva();
+            
+            break;
+
+            default:
+                std::cout<<ANSI_COLOR_RED "NUMERO INCORRECTO, prueba de nuevo\n" ANSI_COLOR_RESET;
+            break;
+        }
+    }
+}
+
+
+
 

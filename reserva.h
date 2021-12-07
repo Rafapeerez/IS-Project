@@ -6,12 +6,6 @@
 #include <vector>
 #include <list>
 
-struct Maquina{ //Estructura de la maquina
-    int numero_maq;
-    int recur_totales;
-    int recur_disp;
-};
-
 struct Fecha{ //Estructura de la fecha
     int fecha_maquina; 
     std::string fecha_inicio;
@@ -26,15 +20,11 @@ class Reserva{ //CLASE RESERVA
         int recursos_; //Recursos elegidos por el usuario
         int confirmacion_op_; //Confirmacion de la operacion
         std::list<Fecha> fecha_; //Lista para fecha
-        std::list<Maquina> maquinas_; //Lista para maquinas
         int vector_recur_disp[8];
 
     public:
         inline Reserva(){for(int i=0; i<8; i++){vector_recur_disp[i]=8;}};//Constructor
         void mostrarMenuReserva(); //Muestra el menu por pantalla
-        void setMaquinas();//Genera el maquinas.txt
-        inline std::list<Maquina> getMaquinas(){return maquinas_;}//Devuelve la lista maquina
-        /*void modificaMaquinas(int maquina_ele, int numero_maq, int recur_totales, int recur_disp);*/ //NO DUNCIONA
         void mostrarMaquinas(); //Mostrar las maquinas junto con los recursos que se encuentran disponibles
         bool setElegirMaquina(int &maquina); //Booleano que se encarga de elegir un valor real dentro de la maquina, si se encuentra fuera del valor sale de la aplicacion
         inline int getElegirMaquina(){return maquina_elegida_;} //Retorna el valor de la maquina elegida
@@ -49,6 +39,7 @@ class Reserva{ //CLASE RESERVA
         bool comprobacionHora(std::string hora);//Comprueba que la hora es correcta
         bool comprobacionFecha(std::string fecha);//Comprueba que la fecha es correcta
         bool comprobarHoraDiaIgual(std::string fecha_inicio, std::string hora_inicio, std::string fecha_final, std::string hora_final);//Comprueba que en dias igual la hora de inicio es menor que la final
+        void menu();
         
 };
 #endif
