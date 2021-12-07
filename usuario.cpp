@@ -26,17 +26,19 @@ bool Usuario::setID(int ID){
     }
 
     char name[255], email[255], password[255], identifier[255];
-
-    while(f.getline(name, 255, ' ')){
+    char *ptr;
+    while (f.getline(name, 255, ' ')){
         f.getline(email, 255, ' ');
         f.getline(password, 255, ' ');
         f.getline(identifier, 255, '\n');
-        if (strtol(identifier,NULL,10) == ID){
-            return true;
+        if (strtol(identifier,&ptr,10) == ID){
+            cout << "No se puede insertar el ID que acaba de introducir ya que se encuentra en la base de datos. \n";
+            return false;
         }
     }
-    cout << "No se puede insertar el ID que acaba de introducir ya que se encuentra en la base de datos. \n";
-    return false;
+
+    ID_ = ID;
+    return true;
 }
 
 bool Usuario::setContraseña(string contraseña){
