@@ -1,7 +1,10 @@
 #ifndef USUARIO_H
 #define USUARIO_H
 
-#include <string>
+#include <cstring>
+#include <fstream>
+#include <iostream>
+#include <stdio.h>
 
 class Usuario{
     private:
@@ -16,14 +19,13 @@ class Usuario{
         inline void setNombre(std::string nombre) { nombre_ = nombre; }
         inline std::string getNombre() { return nombre_; }
 
-        inline void setCorreo(std::string correo) { correo_ = correo; }
+        bool setCorreo(std::string correo);
         inline std::string getCorreo() { return correo_; }
-        
 
-        inline void setContraseña(std::string contraseña) { contraseña_ = contraseña; }
+        bool setContraseña(std::string contraseña);
         inline std::string getContraseña() { return contraseña_; }
 
-        inline void setID(int ID) { ID_ = ID; }
+        bool setID(int ID);
         inline int getID() { return ID_; }
 
         void darAltaUsuario(int usuarios);
