@@ -16,6 +16,7 @@
             std::cout<<"No se pueden resevar esos recursos\n";             
         }
     
+        a.restringe();
     
     
     }
