@@ -1,4 +1,4 @@
-#include "maquina.h"
+#include "maquinas.h"
 using namespace std;
 
  bool setnumMaquinas(int nMaquinas){
