@@ -28,7 +28,7 @@ class Reserva{ //CLASE RESERVA
         void mostrarMaquinas(); //Mostrar las maquinas junto con los recursos que se encuentran disponibles
         bool setElegirMaquina(int &maquina); //Booleano que se encarga de elegir un valor real dentro de la maquina, si se encuentra fuera del valor sale de la aplicacion
         inline int getElegirMaquina(){return maquina_elegida_;} //Retorna el valor de la maquina elegida
-        bool setElegirRecursos(int recursos); //Booleano que se encarga de elegir un valor real en los recursos disponibles, siempre que se encuentren disponibles, si se encuentra fuera del rango sale de la aplicacion
+        bool setElegirRecursos(int recursos, int maximo); //Booleano que se encarga de elegir un valor real en los recursos disponibles, siempre que se encuentren disponibles, si se encuentra fuera del rango sale de la aplicacion
         inline int getElegirRecursos(){return recursos_;}//Retorna el valor de los recursos elegidos
         bool setConfirmacion(int confirmacion_op);//Si se obtiene el valor 1 se guardan los datos y se confirma la operacion
         inline int getConfirmacion(){return confirmacion_op_;};//Retorna el valor de la operacion

@@ -5,6 +5,8 @@
 #include "usuario.cc"
 #include "recursos.h"
 #include "recursos.cc"
+#include "maquinas.h"
+#include "maquinas.cc"
 #define ANSI_COLOR_RED "\x1b[31m"
 #define ANSI_COLOR_RESET "\x1b[39m"
 #define ANSI_COLOR_GREEN "\x1b[32m"
@@ -59,15 +61,21 @@ int main(){
                     user.darAltaUsuario(numeroUsuarios);
                 }break;
 
-                case 2:
+                case 2:{
                 char confirmacion2;
                     std::cout<<ANSI_COLOR_RED "¿Estas seguro de que tienes acceso al control de las maquinas? y/n \n" ANSI_COLOR_RESET; 
                     std::cin>>confirmacion2;
                     if(confirmacion2!='y'){
                         exit(0);
                     }
-                    //CODIGO ANTONIO
-                break;
+                    Maquina m;
+                    int maq;
+                    std::cout<<ANSI_COLOR_RED "Si introduces un valor incorrecto, se saldra del programa \n" ANSI_COLOR_RESET; 
+                    std::cout<<"Introduce el numero de maquinas que desea que esten disponibles: ";
+                    std::cin>>maq;
+                    m.setnumMaquinas(maq);
+                    m.darAlta_Baja_Maquina();
+                } break;
 
                 case 3:
                         Recursos a;
@@ -111,6 +119,8 @@ int main(){
                 }break;
 
                 case 1:{
+                    Recursos a;
+                    int valor=a.retornaMaxima();
                     Reserva r;
                     Fecha f;
             int operacion=1;
@@ -157,7 +167,7 @@ int main(){
                 int recursos;//Introduce los recursos a seleccionar de dicha maquina
                 std::cout<<"Recursos seleccionados (MAX. TODAS 8): ";
                 std::cin>>recursos;
-                r.setElegirRecursos(recursos);
+                r.setElegirRecursos(recursos, valor);
                 
                 std::cout<<ANSI_COLOR_RED "ATENCION: Las fechas se introducira DD/MM/AAAA y las horas HH.MM\n" ANSI_COLOR_RESET;
                 std::cout<<"Introduce el dia de inicio de la reserva: ";
