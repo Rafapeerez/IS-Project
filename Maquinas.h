@@ -1,24 +1,21 @@
 #ifndef MAQUINAS_H
 #define MAQUINAS_H
-
-#include <cstring>
 #include <iostream>
-#include <vector>
+
 
 class Maquina{
     private:
         int identMaq_;
-        int maquinasTotales_;
         int nMaquinas_;
-        
-
     public:
-       inline Maquina(){maquinasTotales_=8;}
+       inline Maquina(){};
+        bool setnumMaquinas(int nMaquina);
+        inline int getnumMaquinas(){return nMaquinas_;};
 
-        bool setnumMaquinas(int nMaquinas);
-        inline int getnumMaquinas(){return nMaquinas_;}
-
-        void darAlta_Baja_Maquina(int maquinas);
+        bool setMaquinasDisponibles(int identMaq);
+        inline int getMaquinasDisponibles(){return identMaq_;};
+        
+        void darAlta_Baja_Maquina();
         
 };
 
