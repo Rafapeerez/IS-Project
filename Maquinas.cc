@@ -2,17 +2,27 @@
 using namespace std;
 
  bool Maquina::setnumMaquinas(int nMaquinas){
-     if(nMaquinas>0 && nMaquinas<=8){
-         nMaquinas_=nMaquinas;
-         return true;
+     if(nMaquinas_>0 && nMaquinas<=8){
+        nMaquinas_=nMaquinas;
+        return true;
      }
-     exit (0);
+     exit(0);
+     return false;
+ }
+
+bool Maquina::setMaquinasDisponibles(int identMaq){
+     if(identMaq>0 && identMaq<=8){
+        identMaq_=identMaq;
+        return true;
+     }
+     exit(0);
      return false;
  }
 
 
- void Maquina::darAlta_Baja_Maquina(int maquinas){
-     fstream f("Maquinas.txt", fstream::app);
+ void Maquina::darAlta_Baja_Maquina(){
+    remove("Maquinas.txt");
+    fstream f("Maquinas.txt", fstream::app);
     if(!f){
         cout<<"Ha ocurrido un error al intentar abrir el fichero 'Maquinas.txt' \n";
         exit(EXIT_FAILURE);
@@ -21,8 +31,8 @@ using namespace std;
     cout<<"Introduzca el numero de maquinas disponibles: "<<endl;
     for(int i=0;i<nMaquinas_;i++){
         cin>>numMaquinas;
-        setnumMaquinas(numMaquinas);
-        f<<getnumMaquinas()<<endl;
+        setMaquinasDisponibles(numMaquinas);
+        f<<getMaquinasDisponibles()<<endl;
         
     }
 
