@@ -1,7 +1,7 @@
 #include "maquinas.h"
 using namespace std;
 
- bool setnumMaquinas(int nMaquinas){
+ bool Maquina::setnumMaquinas(int nMaquinas){
      if(nMaquinas>0 && nMaquinas<=8){
          nMaquinas_=nMaquinas;
          return true;
@@ -11,7 +11,7 @@ using namespace std;
  }
 
 
- void darAlta_Baja_Maquina(int maquinas){
+ void Maquina::darAlta_Baja_Maquina(int maquinas){
      fstream f("Maquinas.txt", fstream::app);
     if(!f){
         cout<<"Ha ocurrido un error al intentar abrir el fichero 'Maquinas.txt' \n";
