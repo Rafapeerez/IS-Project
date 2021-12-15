@@ -170,6 +170,9 @@ int main(){
                 std::cout<<"Maquina seleccionada (MAX. 8): ";
                 std::cin>>maq_elegida;
                 r.setElegirMaquina(maq_elegida);
+                if(r.setElegirMaquina(maq_elegida)==false){
+                    exit(0);
+                }
 
                 int recursos;//Introduce los recursos a seleccionar de dicha maquina
                 
@@ -177,19 +180,33 @@ int main(){
                 std::cout<<"Recursos seleccionados (MAX. TODAS 8): ";
                 std::cin>>recursos;
                 r.setElegirRecursos(recursos, valor);
+                if(r.setElegirRecursos(recursos, valor)==false){
+                    exit(0);
+                }
 
                 std::cout<<ANSI_COLOR_RED "ATENCION: Las fechas se introducira DD/MM/AAAA y las horas HH.MM\n" ANSI_COLOR_RESET;
                 std::cout<<"Introduce el dia de inicio de la reserva: ";
                 std::cin>>f.fecha_inicio;
                 r.comprobacionFecha(f.fecha_inicio);
+                if(r.comprobacionFecha(f.fecha_inicio)==false){
+                    exit(0);
+                }
+
 
                 std::cout<<"Introduce la hora de inicio de la reserva: ";
                 std::cin>>f.hora_inicio;
                 r.comprobacionHora(f.hora_inicio);
+                if(r.comprobacionHora(f.hora_inicio)==false){
+                    exit(0);
+                }
+                
 
                 std::cout<<"Introduce el dia de final de la reserva: ";
                 std::cin>>f.fecha_final;
                 r.comprobacionFecha(f.fecha_final);
+                if(r.comprobacionFecha(f.fecha_final)==false){
+                    exit(0);
+                }
                 
                 if(f.fecha_inicio>f.fecha_final){
                     std::cout<<ANSI_COLOR_RED "ERROR al colocar el fecha. La fecha de inicio es posterior a la final\n" ANSI_COLOR_RESET;
@@ -199,7 +216,13 @@ int main(){
                 std::cout<<"Introduce la hora de final de la reserva: ";
                 std::cin>>f.hora_final;
                 r.comprobacionHora(f.hora_final);
+                if(r.comprobacionHora(f.hora_inicio)==false){
+                    exit(0);
+                }
                 r.comprobarHoraDiaIgual(f.fecha_inicio, f.hora_inicio, f.fecha_final, f.hora_final);
+                if(r.comprobarHoraDiaIgual(f.fecha_inicio, f.hora_inicio, f.fecha_final, f.hora_final)==false){
+                    exit(0);
+                }
 
                 int confirmacion_op;
                 std::cout<<"¿Estas seguro de realizar la reserva? Si es asi pulse 1\n";

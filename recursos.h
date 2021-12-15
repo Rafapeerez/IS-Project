@@ -17,8 +17,7 @@ class Recursos{
         inline void setMaximo(std::string maximo) { maximo_ = maximo; }
         inline std::string getMaximo() { return maximo_; }
         bool setFichero();
-        void restringe();   
-        int retornaMaxima();
+        void restringe();  
         int setmostrarrecursos();
 };
 #endif

@@ -1,4 +1,5 @@
 #include "maquinas.h"
+#include <fstream>
 using namespace std;
 
  bool Maquina::setnumMaquinas(int nMaquinas){

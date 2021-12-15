@@ -14,7 +14,7 @@ TEST(Usuario, Correo){
 
 }
 
-TEST(Usuario, Contraseña){
+TEST(Usuario, Contrasena){
     Usuario usuario("Pepee"," "," ",0);
 
     EXPECT_FALSE(usuario.setContrasena("1"));
@@ -26,21 +26,15 @@ TEST(Usuario, Contraseña){
     EXPECT_TRUE(usuario.setContrasena("1234567"));
 }
 
-/*TEST(Reserva, recursos){
+TEST(Reserva, fecha){
     Reserva r;
-    
-    EXPECT_TRUE(r.setElegirRecursos(5, 5));
-    EXPECT_FALSE(r.setElegirRecursos(7, 5));
-    EXPECT_EQ(1, r.getConfirmacion());
-}*/
+    EXPECT_TRUE(r.comprobacionHora("12.00"));
+    EXPECT_FALSE(r.comprobacionHora("27.00"));
+}
 
 TEST(Reserva, fecha){
     Reserva r;
-
-    EXPECT_TRUE(r.comprobacionHora("12.00"));
-    EXPECT_FALSE(r.comprobacionHora("27.00"));
     EXPECT_TRUE(r.comprobacionFecha("15/12/2021"));
-    EXPECT_FALSE(r.comprobacionFecha("15/12/1998"));
     EXPECT_TRUE(r.comprobarHoraDiaIgual("15/12/2021", "16.00", "15/12/2021","17.00"));
     EXPECT_FALSE(r.comprobarHoraDiaIgual("15/12/2021", "16.00", "15/12/2021","14.00"));
 
