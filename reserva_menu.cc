@@ -83,8 +83,8 @@ int main(){
                         std::cout<<"Introduzca el numero de recursos que quieres reservar: ";
                         std::cin>>recursos;
 
-                     if(a.setcomprueba(recursos) ){
-                       std::cout<<ANSI_COLOR_GREEN "El usuario podra reserva como maximo "<< a.getcomprueba() <<"\n" ANSI_COLOR_RESET;
+                     if(a.setcomprueba(recursos)){
+                       a.restringe();
                     }
                     else{
                         std::cout<<ANSI_COLOR_RED "No se pueden resevar esos recursos\n" ANSI_COLOR_RESET;             
@@ -120,7 +120,7 @@ int main(){
 
                 case 1:{
                     Recursos a;
-                    int valor=a.retornaMaxima();
+                    int valor=a.setmostrarrecursos();
                     Reserva r;
                     Fecha f;
             int operacion=1;
@@ -155,8 +155,15 @@ int main(){
                 r.mostrarFechasOcupadas();
             break;
 
+            case 3:{
+                system("clear");
+                Maquina m;
+                r.mostrarMaquinas();
+                cout<<"\n";
+                m.mostrarDisponibilidad();
+            }break;
 
-            case 3: 
+            case 4: 
                 system("clear");
                 std::cout<<ANSI_COLOR_RED "¡¡¡CUIDADO!!! SI SE INTRODUCE UN DATO INCORRECTO, SE SALDRA DEL PROGRAMA Y NO SE GUARDARA LA RESERVA\n" ANSI_COLOR_RESET;
                 int maq_elegida;//Introduce la maquina a seleccionar
@@ -165,10 +172,12 @@ int main(){
                 r.setElegirMaquina(maq_elegida);
 
                 int recursos;//Introduce los recursos a seleccionar de dicha maquina
+                
+                std::cout<<ANSI_COLOR_RED "EL MAXIMO DE RECURSOS A RESERVAR SERA DE "<<valor<<"\n" ANSI_COLOR_RESET;
                 std::cout<<"Recursos seleccionados (MAX. TODAS 8): ";
                 std::cin>>recursos;
                 r.setElegirRecursos(recursos, valor);
-                
+
                 std::cout<<ANSI_COLOR_RED "ATENCION: Las fechas se introducira DD/MM/AAAA y las horas HH.MM\n" ANSI_COLOR_RESET;
                 std::cout<<"Introduce el dia de inicio de la reserva: ";
                 std::cin>>f.fecha_inicio;

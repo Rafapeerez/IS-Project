@@ -1,2 +1,5 @@
-2
-6
+Maquina 1
+Maquina 2
+Maquina 3
+Maquina 4
+Maquina 5

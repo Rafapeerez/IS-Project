@@ -14,6 +14,6 @@ class Maquina{
         bool setMaquinasDisponibles(int identMaq);
         inline int getMaquinasDisponibles(){return identMaq_;};
         void darAlta_Baja_Maquina();
-        
+        void mostrarDisponibilidad();
 };
 #endif

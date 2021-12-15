@@ -18,7 +18,8 @@ void Reserva::mostrarMenuReserva(){//Muestra el menu reserva por pantalla
         std::cout<<"|0. Salir del menu                             |\n";
         std::cout<<"|1. Mostrar maquinas disponibles               |\n";
         std::cout<<"|2. Mostrar fechas ocupadas                    |\n";
-        std::cout<<"|3. Introducir Datos reserva                   |\n";
+		std::cout<<"|3. Mostrar maquinas disponibles               |\n";
+        std::cout<<"|4. Introducir Datos reserva                   |\n";
         std::cout<<"|______________________________________________|\n\n";
 }
 
