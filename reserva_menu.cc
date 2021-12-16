@@ -62,7 +62,7 @@ int main(){
                 }break;
 
                 case 2:{
-                char confirmacion2;
+                    char confirmacion2;
                     std::cout<<ANSI_COLOR_RED "¿Estas seguro de que tienes acceso al control de las maquinas? y/n \n" ANSI_COLOR_RESET; 
                     std::cin>>confirmacion2;
                     if(confirmacion2!='y'){
@@ -81,12 +81,12 @@ int main(){
                 } break;
 
                 case 3:
-                        Recursos a;
-                        int recursos;
-                        std::cout<<"Introduzca el numero de recursos que quieres reservar: ";
-                        std::cin>>recursos;
+                    Recursos a;
+                    int recursos;
+                    std::cout<<"Introduzca el numero de recursos que quieres reservar: ";
+                    std::cin>>recursos;
 
-                     if(a.setcomprueba(recursos)){
+                    if(a.setcomprueba(recursos)){
                        a.restringe();
                     }
                     else{

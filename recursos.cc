@@ -4,56 +4,54 @@
 using namespace std;
 
 
-	Recursos::Recursos(std::string maximo){
-  			maximo_ = maximo;
+Recursos::Recursos(std::string maximo){
+  	maximo_ = maximo;
+}
+
+
+bool Recursos::setcomprueba(int recursosmaquina){
+	if(recursosmaquina>0 && recursosmaquina<=8){
+		recursosmaquina_=recursosmaquina;
+		return true;
 	}
-
-
-	bool Recursos::setcomprueba(int recursosmaquina){
-		if(recursosmaquina>0 && recursosmaquina<=8){
-			recursosmaquina_=recursosmaquina;
-			return true;
-
-		}
-		else{
-			return false;
-		}
+	else{
+		return false;
 	}
+}
 
-	bool Recursos::setFichero(){
+bool Recursos::setFichero(){
     ifstream f("restriccionUsuario.txt");
     if(!f){
         cout << "Error al abrir el fichero. \n";
         EXIT_FAILURE;
     }
 
- 		char name[255];
-  		char *ptr;
-   		while (f.getline(name, 255, ' ')){
-   			return true;
-		}
-		return false;
+ 	char name[255];
+  	char *ptr;
+   	while (f.getline(name, 255, ' ')){
+   		return true;
 	}
+	return false;
+}
 
-	void Recursos::restringe(){
-    
-		 fstream fichero("restriccionUsuario.txt", fstream::app);
-		 const char* nombre="restriccionUsuario.txt";
-    	if((fopen(nombre, "w"))==NULL){
-        	cout<<"Ha ocurrido un error al intentar abrir el fichero 'restriccionUsuario.txt' \n";
-        	exit(EXIT_FAILURE);
- 	    }
+void Recursos::restringe(){
+	fstream fichero("restriccionUsuario.txt", fstream::app);
+	const char* nombre="restriccionUsuario.txt";
+    if((fopen(nombre, "w"))==NULL){
+    	cout<<"Ha ocurrido un error al intentar abrir el fichero 'restriccionUsuario.txt' \n";
+    	exit(EXIT_FAILURE);
+    }
 
     string maximo;
 
-        cout << "Como administrador elija el máximo de recursos que los usuarios pueden reservar" << endl;
-        cin >> maximo;
-        setMaximo(maximo);
+    cout << "Como administrador elija el máximo de recursos que los usuarios pueden reservar" << endl;
+    cin >> maximo;
+    setMaximo(maximo);
 
-        fichero << getMaximo() << endl;
+    fichero << getMaximo() << endl;
 
     fichero.close();
-	}
+}
 
 int Recursos::setmostrarrecursos(){
     ifstream f("restriccionUsuario.txt");

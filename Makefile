@@ -14,7 +14,7 @@
 
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.
-GTEST_DIR = /home/i02tomag/Escritorio/IS/IS/googletest
+GTEST_DIR = /home/rafa/UCO/POO/googletest
 
 # Where to find user code.
 # USER_DIR = ../samples
@@ -78,8 +78,6 @@ reserva.o : reserva.cc reserva.h
 recursos.o : recursos.cc recursos.h
 
 maquinas.o : maquinas.cc maquinas.h
-
-# main.o: main.cpp usuario.h
 
 test.o : test.cpp usuario.h usuario.cc reserva.cc reserva.h recursos.cc recursos.h maquinas.cc maquinas.h
 
