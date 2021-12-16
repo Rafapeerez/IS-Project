@@ -18,10 +18,6 @@ int main(){
     std::string contrasena;
     std::cout<<"Introduce el ID: ";
     std::cin>>ID;
-    if(ID<0){
-        std::cout<<ANSI_COLOR_RED "Valor no permitido. ERROR\n" ANSI_COLOR_RESET;
-        exit(0);
-    }
     std::cout<<"Introduce el nombre: ";
     std::cin>>nombre;
     std::cout<<"Introduce la contraseña: ";
@@ -52,11 +48,12 @@ int main(){
                 break;
 
                 case 1:{
-                    if(ID>2){
-                        std::cout<<ANSI_COLOR_RED "ERROR. USTED NO TIENE ACCESO A ESTE APARTADO\n" ANSI_COLOR_RESET;
+                    char confirmacion1;
+                    std::cout<<ANSI_COLOR_RED "¿Estas seguro de que tienes acceso al control de los usuarios? y/n \n" ANSI_COLOR_RESET; 
+                    std::cin>>confirmacion1;
+                    if(confirmacion1!='y'){
                         exit(0);
                     }
-                    std::cout<<ANSI_COLOR_GREEN "ACCESO PERMITIDO\n" ANSI_COLOR_RESET;
                     Usuario user(" ");
                     int numeroUsuarios = 0;
                     std::cout << "¿Cuantos usuarios quiere dar de alta?" << endl;
@@ -65,18 +62,12 @@ int main(){
                 }break;
 
                 case 2:{
-<<<<<<< HEAD
-                    if(ID<3){
-                        std::cout<<ANSI_COLOR_RED "ERROR. USTED NO TIENE ACCESO A ESTE APARTADO\n" ANSI_COLOR_RESET;
-=======
                     char confirmacion2;
                     std::cout<<ANSI_COLOR_RED "¿Estas seguro de que tienes acceso al control de las maquinas? y/n \n" ANSI_COLOR_RESET; 
                     std::cin>>confirmacion2;
                     if(confirmacion2!='y'){
->>>>>>> 8975ab12adffb79af0c455f77071132d906f5dbd
                         exit(0);
                     }
-                    std::cout<<ANSI_COLOR_GREEN "ACCESO PERMITIDO\n" ANSI_COLOR_RESET;
                     Maquina m;
                     int maq;
                     std::cout<<ANSI_COLOR_RED "Si introduces un valor incorrecto, se saldra del programa \n" ANSI_COLOR_RESET; 
@@ -87,19 +78,9 @@ int main(){
                         exit(0);
                     }
                     m.darAlta_Baja_Maquina();
-                }break;
+                } break;
 
                 case 3:
-<<<<<<< HEAD
-                        Recursos a;
-                        int recursos;
-                        std::cout<<"Introduzca el numero de recursos a restringir para los usuarios: ";
-                        std::cin>>recursos;
-
-                    if(a.setcomprueba(recursos)==false){
-                         std::cout<<ANSI_COLOR_RED "No se pueden resevar esos recursos\n" ANSI_COLOR_RESET;             
-                         exit(0);
-=======
                     Recursos a;
                     int recursos;
                     std::cout<<"Introduzca el numero de recursos que quieres reservar: ";
@@ -110,9 +91,7 @@ int main(){
                     }
                     else{
                         std::cout<<ANSI_COLOR_RED "No se pueden resevar esos recursos\n" ANSI_COLOR_RESET;             
->>>>>>> 8975ab12adffb79af0c455f77071132d906f5dbd
                     }
-                    a.restringe();
                     break;
             }
  

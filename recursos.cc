@@ -42,17 +42,11 @@ void Recursos::restringe(){
     	exit(EXIT_FAILURE);
     }
 
-<<<<<<< HEAD
-    	string maximo=std::to_string(getcomprueba());
-        cin >> maximo;
-        setMaximo(maximo);
-=======
     string maximo;
 
     cout << "Como administrador elija el máximo de recursos que los usuarios pueden reservar" << endl;
     cin >> maximo;
     setMaximo(maximo);
->>>>>>> 8975ab12adffb79af0c455f77071132d906f5dbd
 
     fichero << getMaximo() << endl;
 
