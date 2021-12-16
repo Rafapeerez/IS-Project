@@ -7,7 +7,6 @@ using namespace std;
         nMaquinas_=nMaquinas;
         return true;
      }
-     exit(0);
      return false;
  }
 
@@ -16,7 +15,6 @@ bool Maquina::setMaquinasDisponibles(int identMaq){
         identMaq_=identMaq;
         return true;
      }
-     exit(0);
      return false;
  }
 

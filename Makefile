@@ -77,13 +77,13 @@ reserva.o : reserva.cc reserva.h
 
 recursos.o : recursos.cc recursos.h
 
-# maquinas.o : maquinas.cc maquinas.h
+maquinas.o : maquinas.cc maquinas.h
 
 # main.o: main.cpp usuario.h
 
-test.o : test.cpp usuario.h usuario.cc reserva.cc reserva.h recursos.cc recursos.h #maquinas.cc maquinas.h
+test.o : test.cpp usuario.h usuario.cc reserva.cc reserva.h recursos.cc recursos.h maquinas.cc maquinas.h
 
 
-test : usuario.o reserva.o  recursos.o test.o gtest_main.a #maquinas.o 
+test : usuario.o reserva.o  recursos.o test.o gtest_main.a maquinas.o 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 

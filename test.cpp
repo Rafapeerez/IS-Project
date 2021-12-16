@@ -1,7 +1,7 @@
 #include "usuario.h"
 #include "reserva.h"
 #include "recursos.h"
-//#include "maquinas.h"
+#include "maquinas.h"
 #include "gtest/gtest.h"
 
 #include <cstdlib>
@@ -32,10 +32,34 @@ TEST(Reserva, fecha){
     EXPECT_FALSE(r.comprobacionHora("27.00"));
 }
 
-TEST(Reserva, fecha){
+TEST(Reserva, fecha2){
     Reserva r;
     EXPECT_TRUE(r.comprobacionFecha("15/12/2021"));
     EXPECT_TRUE(r.comprobarHoraDiaIgual("15/12/2021", "16.00", "15/12/2021","17.00"));
     EXPECT_FALSE(r.comprobarHoraDiaIgual("15/12/2021", "16.00", "15/12/2021","14.00"));
 
+}
+
+TEST(Recursos, comprobacionrecursos){
+    Recursos a;
+    EXPECT_TRUE(a.setcomprueba(7));
+    EXPECT_FALSE(a.setcomprueba(9));
+    EXPECT_TRUE(a.setFichero());
+
+}
+
+TEST(Recursos, comprobacionfichero){
+    Recursos a;
+    EXPECT_TRUE(a.setFichero());
+}
+
+TEST(Maquinas, maquinastotales){
+    Maquina m;
+    EXPECT_TRUE(m.setnumMaquinas(4));
+    EXPECT_FALSE(m.setnumMaquinas(9));
+}
+
+TEST(Maquinas, maquinasDisponibles){
+    Maquina m;
+    EXPECT_TRUE( m.setMaquinasDisponibles(3));
 }

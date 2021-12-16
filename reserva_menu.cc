@@ -74,6 +74,9 @@ int main(){
                     std::cout<<"Introduce el numero de maquinas que desea que esten disponibles: ";
                     std::cin>>maq;
                     m.setnumMaquinas(maq);
+                    if(m.setnumMaquinas(maq)==false){
+                        exit(0);
+                    }
                     m.darAlta_Baja_Maquina();
                 } break;
 
