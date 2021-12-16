@@ -43,14 +43,12 @@ bool Reserva::setElegirMaquina(int &maquina){//Booleano que se encarga de elegir
     return false;
 }
 
-bool Reserva::setElegirRecursos(int recursos, int recursosmax){
+bool Reserva::setElegirRecursos(int recursos, int maximo){
 	int maq_elegida=getElegirMaquina();
-	if((vector_recur_disp[maq_elegida-1]>=recursos) && (recursos>0)){
-		if(recursos<=recursosmax){
-			recursos_=recursos;
- 			vector_recur_disp[maq_elegida-1]=vector_recur_disp[maq_elegida-1]-recursos_;
-			return true;
-		}
+	if(recursos>0 && vector_recur_disp[maq_elegida-1]>=recursos && maximo>=recursos){
+		recursos_=recursos;
+		vector_recur_disp[maq_elegida-1]=vector_recur_disp[maq_elegida-1]-recursos;
+		return true;
 	}
 	return false;
 }

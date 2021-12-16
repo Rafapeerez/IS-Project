@@ -174,7 +174,6 @@ int main(){
                 std::cout<<ANSI_COLOR_RED "EL MAXIMO DE RECURSOS A RESERVAR SERA DE "<<valor<<"\n" ANSI_COLOR_RESET;
                 std::cout<<"Recursos seleccionados (MAX. TODAS 8): ";
                 std::cin>>recursos;
-                r.setElegirRecursos(recursos, valor);
                 if(r.setElegirRecursos(recursos, valor)==false){
                     std::cout<<ANSI_COLOR_RED "ERROR RECURSOS NO DISPONIBLES PARA DICHA MAQUINA, TEN EN CUENTA LA DISPONIBILIDAD\n" ANSI_COLOR_RESET;
                     exit(0);
