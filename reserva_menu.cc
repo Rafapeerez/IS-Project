@@ -18,12 +18,15 @@ int main(){
     std::string contrasena;
     std::cout<<"Introduce el ID: ";
     std::cin>>ID;
+    if(ID<=0){
+        exit(0);
+    }
     std::cout<<"Introduce el nombre: ";
     std::cin>>nombre;
     std::cout<<"Introduce la contraseña: ";
     std::cin>>contrasena;
     
-    if(ID>=0 && ID<=4){
+    if(ID>0 && ID<=4){
         std::cout<<ANSI_COLOR_GREEN "ACCESO PERMITIDO, ADMINISTRADOR\n" ANSI_COLOR_RESET;
         int operacion_admin=1;
         while(operacion_admin!=0){
@@ -48,12 +51,11 @@ int main(){
                 break;
 
                 case 1:{
-                    char confirmacion1;
-                    std::cout<<ANSI_COLOR_RED "¿Estas seguro de que tienes acceso al control de los usuarios? y/n \n" ANSI_COLOR_RESET; 
-                    std::cin>>confirmacion1;
-                    if(confirmacion1!='y'){
-                        exit(0);
+                    if(ID>3){
+                    std::cout<<ANSI_COLOR_RED "No tiene permiso para acceder a este menu\n" ANSI_COLOR_RESET; 
+                    exit(0);
                     }
+                    std::cout<<ANSI_COLOR_GREEN "ACCESO PERMITIDO, ADMINISTRADOR DE USUARIOS\n" ANSI_COLOR_RESET;
                     Usuario user(" ");
                     int numeroUsuarios = 0;
                     std::cout << "¿Cuantos usuarios quiere dar de alta?" << endl;
@@ -62,12 +64,11 @@ int main(){
                 }break;
 
                 case 2:{
-                    char confirmacion2;
-                    std::cout<<ANSI_COLOR_RED "¿Estas seguro de que tienes acceso al control de las maquinas? y/n \n" ANSI_COLOR_RESET; 
-                    std::cin>>confirmacion2;
-                    if(confirmacion2!='y'){
-                        exit(0);
+                    if(ID<3){
+                    std::cout<<ANSI_COLOR_RED "No tiene permiso para acceder a este menu\n" ANSI_COLOR_RESET; 
+                    exit(0);
                     }
+                    std::cout<<ANSI_COLOR_GREEN "ACCESO PERMITIDO, ADMINISTRADOR DE MAQUINAS\n" ANSI_COLOR_RESET;
                     Maquina m;
                     int maq;
                     std::cout<<ANSI_COLOR_RED "Si introduces un valor incorrecto, se saldra del programa \n" ANSI_COLOR_RESET; 
@@ -82,16 +83,7 @@ int main(){
 
                 case 3:
                     Recursos a;
-                    int recursos;
-                    std::cout<<"Introduzca el numero de recursos que quieres reservar: ";
-                    std::cin>>recursos;
-
-                    if(a.setcomprueba(recursos)){
-                       a.restringe();
-                    }
-                    else{
-                        std::cout<<ANSI_COLOR_RED "No se pueden resevar esos recursos\n" ANSI_COLOR_RESET;             
-                    }
+                    a.restringe();   
                     break;
             }
  
@@ -174,16 +166,17 @@ int main(){
                 std::cin>>maq_elegida;
                 r.setElegirMaquina(maq_elegida);
                 if(r.setElegirMaquina(maq_elegida)==false){
+                    std::cout<<ANSI_COLOR_RED "ERROR MAQUINA NO DISPONIBLE\n" ANSI_COLOR_RESET;
                     exit(0);
                 }
 
                 int recursos;//Introduce los recursos a seleccionar de dicha maquina
-                
                 std::cout<<ANSI_COLOR_RED "EL MAXIMO DE RECURSOS A RESERVAR SERA DE "<<valor<<"\n" ANSI_COLOR_RESET;
                 std::cout<<"Recursos seleccionados (MAX. TODAS 8): ";
                 std::cin>>recursos;
                 r.setElegirRecursos(recursos, valor);
                 if(r.setElegirRecursos(recursos, valor)==false){
+                    std::cout<<ANSI_COLOR_RED "ERROR RECURSOS NO DISPONIBLES PARA DICHA MAQUINA, TEN EN CUENTA LA DISPONIBILIDAD\n" ANSI_COLOR_RESET;
                     exit(0);
                 }
 
@@ -192,6 +185,7 @@ int main(){
                 std::cin>>f.fecha_inicio;
                 r.comprobacionFecha(f.fecha_inicio);
                 if(r.comprobacionFecha(f.fecha_inicio)==false){
+                    std::cout<<ANSI_COLOR_RED "ERROR al introducir la fecha\n" ANSI_COLOR_RESET;
                     exit(0);
                 }
 
@@ -200,6 +194,7 @@ int main(){
                 std::cin>>f.hora_inicio;
                 r.comprobacionHora(f.hora_inicio);
                 if(r.comprobacionHora(f.hora_inicio)==false){
+                    std::cout<<ANSI_COLOR_RED "ERROR al introducir la hora\n" ANSI_COLOR_RESET;
                     exit(0);
                 }
                 
@@ -208,6 +203,7 @@ int main(){
                 std::cin>>f.fecha_final;
                 r.comprobacionFecha(f.fecha_final);
                 if(r.comprobacionFecha(f.fecha_final)==false){
+                    std::cout<<ANSI_COLOR_RED "ERROR al introducir la fecha\n" ANSI_COLOR_RESET;
                     exit(0);
                 }
                 
@@ -220,10 +216,13 @@ int main(){
                 std::cin>>f.hora_final;
                 r.comprobacionHora(f.hora_final);
                 if(r.comprobacionHora(f.hora_inicio)==false){
+                    std::cout<<ANSI_COLOR_RED "ERROR al introducir la hora\n" ANSI_COLOR_RESET;
                     exit(0);
                 }
+                
                 r.comprobarHoraDiaIgual(f.fecha_inicio, f.hora_inicio, f.fecha_final, f.hora_final);
                 if(r.comprobarHoraDiaIgual(f.fecha_inicio, f.hora_inicio, f.fecha_final, f.hora_final)==false){
+                    std::cout<<ANSI_COLOR_RED "ERROR al introducir una hora final menor que la hora inicial en el mismo dia\n" ANSI_COLOR_RESET;
                     exit(0);
                 }
 

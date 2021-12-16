@@ -40,20 +40,18 @@ bool Reserva::setElegirMaquina(int &maquina){//Booleano que se encarga de elegir
         maquina_elegida_=maquina;
         return true;
     }
-	std::cout<<ANSI_COLOR_RED "ERROR MAQUINA NO DISPONIBLE\n" ANSI_COLOR_RESET;
-	
     return false;
 }
 
 bool Reserva::setElegirRecursos(int recursos, int recursosmax){
-	
 	int maq_elegida=getElegirMaquina();
-	if(vector_recur_disp[maq_elegida-1]>=recursos && recursos>0 && recursos<=recursosmax){
-		recursos_=recursos;
- 		vector_recur_disp[maq_elegida-1]=vector_recur_disp[maq_elegida-1]-recursos_;
-		return true;
+	if((vector_recur_disp[maq_elegida-1]>=recursos) && (recursos>0)){
+		if(recursos<=recursosmax){
+			recursos_=recursos;
+ 			vector_recur_disp[maq_elegida-1]=vector_recur_disp[maq_elegida-1]-recursos_;
+			return true;
+		}
 	}
-	std::cout<<ANSI_COLOR_RED "ERROR RECURSOS NO DISPONIBLES PARA DICHA MAQUINA, TEN EN CUENTA LA DISPONIBILIDAD\n" ANSI_COLOR_RESET;
 	return false;
 }
 
@@ -64,6 +62,7 @@ bool Reserva::setConfirmacion(int confirmacion_op){//Se confirma operacion, si s
 	}
 	else{
 		std::cout<<ANSI_COLOR_RED "No se incluyo la reserva\n" ANSI_COLOR_RESET;
+		exit(0);
 		return false;
 	}
 }
@@ -122,7 +121,6 @@ bool Reserva::comprobacionHora(std::string hora){
 	if(stoi(hora)>=00.00 && stoi(hora)<=24.00){
 		return true;
 	}
-	std::cout<<ANSI_COLOR_RED "ERROR al introducir la hora\n" ANSI_COLOR_RESET;
 	return false;
 }
 
@@ -132,7 +130,6 @@ bool Reserva::comprobacionFecha(std::string fecha){//Comprueba que la fecha es c
 	if(fecha>cadena && fecha<=cadena2){
 		return true;
 	}
-	std::cout<<ANSI_COLOR_RED "ERROR al introducir la fecha\n" ANSI_COLOR_RESET;
 	return false;
 }
 
@@ -142,7 +139,6 @@ bool Reserva::comprobarHoraDiaIgual(std::string fecha_inicio, std::string hora_i
             return true;
         }
 		else{
-			std::cout<<ANSI_COLOR_RED "ERROR al introducir una hora final menor que la hora inicial en el mismo dia\n" ANSI_COLOR_RESET;
     		return false;
 		}
     }

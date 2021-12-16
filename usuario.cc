@@ -1,8 +1,5 @@
 #include "usuario.h"
 using namespace std;
-#define ANSI_COLOR_RED "\x1b[31m"
-#define ANSI_COLOR_RESET "\x1b[39m"
-#define ANSI_COLOR_GREEN "\x1b[32m"
 
 Usuario::Usuario(string nombre, string correo=" ", string contrasena=" ", int ID=0){
     nombre_ = nombre;
@@ -50,7 +47,7 @@ bool Usuario::setContrasena(string contrasena){
         return true;
     }
 
-    cout << "Necesitas una contrasena de minimo 6 caracteres. \n";
+    cout << "Necesitas una contraseña de minimo 6 caracteres. \n";
     return false;
 }
 
@@ -76,7 +73,7 @@ void Usuario::darAltaUsuario(int usuarios){
             exit(EXIT_FAILURE);
         }
 
-        cout << "Determine una contrasena por defecto para el usuario." << endl;
+        cout << "Determine una contraseña por defecto para el usuario." << endl;
         cin >> contrasena;
         setContrasena(contrasena);
         if(setContrasena(contrasena) == false){
@@ -91,9 +88,6 @@ void Usuario::darAltaUsuario(int usuarios){
         }
 
         fichero << getNombre() << " " << getCorreo() << " " << getContrasena() << " " << getID() << endl;
-        std::cout<<ANSI_COLOR_GREEN "Usuario Introducido\n" ANSI_COLOR_RESET;
     }
-
     fichero.close();
 }
-

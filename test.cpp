@@ -52,19 +52,16 @@ TEST(Recursos, comprobacionrecursos){ //Comprobamos en este test si el rango de 
 
 TEST(Recursos, comprobacionfichero){ //Comprobamos en este test si se abre el fichero
     Recursos a;
-
     EXPECT_TRUE(a.setFichero());
 }
 
 TEST(Maquina, maquinastotales){ //Comprobamos en este test si el numero de maquinas disponibles es correcto
     Maquina m;
-
     EXPECT_TRUE(m.setnumMaquinas(4));
     EXPECT_FALSE(m.setnumMaquinas(9));
 }
 
 TEST(Maquina, maquinasDisponibles){
     Maquina m;
-
     EXPECT_TRUE( m.setMaquinasDisponibles(3));
 }

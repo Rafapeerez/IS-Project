@@ -8,7 +8,6 @@ Recursos::Recursos(std::string maximo){
   	maximo_ = maximo;
 }
 
-
 bool Recursos::setcomprueba(int recursosmaquina){
 	if(recursosmaquina>0 && recursosmaquina<=8){
 		recursosmaquina_=recursosmaquina;
@@ -35,21 +34,19 @@ bool Recursos::setFichero(){
 }
 
 void Recursos::restringe(){
+    string maximo;
+    cout << "Como administrador elija el máximo de recursos que los usuarios pueden reservar: ";
+    cin >> maximo;
+    if(setcomprueba(std::stoi(maximo))==false){
+        exit(0);
+    }
 	fstream fichero("restriccionUsuario.txt", fstream::app);
 	const char* nombre="restriccionUsuario.txt";
     if((fopen(nombre, "w"))==NULL){
     	cout<<"Ha ocurrido un error al intentar abrir el fichero 'restriccionUsuario.txt' \n";
     	exit(EXIT_FAILURE);
     }
-
-    string maximo;
-
-    cout << "Como administrador elija el máximo de recursos que los usuarios pueden reservar" << endl;
-    cin >> maximo;
-    setMaximo(maximo);
-
-    fichero << getMaximo() << endl;
-
+    fichero << getcomprueba() << endl;
     fichero.close();
 }
 
