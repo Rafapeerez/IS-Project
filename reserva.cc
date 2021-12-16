@@ -79,17 +79,17 @@ void Reserva::setFecha(){//Se genera fechas.txt que muestra las fechas que se en
 	std::string cadena;
 	getline(f, cadena, ',');
 	while(!f.eof()){
-			fec.fecha_maquina=std::stoi(cadena);
-			getline(f, cadena, ',');
-    		fec.fecha_inicio=cadena;
-	    	getline(f, cadena, ',');
-			fec.hora_inicio=cadena;
-	    	getline(f, cadena, ',');
-		    fec.fecha_final=cadena;
-			getline(f, cadena, ',');
-			fec.hora_final=cadena;
-		    fecha_.push_back(fec);
-		    getline(f, cadena, ',');
+		fec.fecha_maquina=std::stoi(cadena);
+		getline(f, cadena, ',');
+    	fec.fecha_inicio=cadena;
+	    getline(f, cadena, ',');
+		fec.hora_inicio=cadena;
+	    getline(f, cadena, ',');
+		fec.fecha_final=cadena;
+		getline(f, cadena, ',');
+		fec.hora_final=cadena;
+		fecha_.push_back(fec);
+		getline(f, cadena, ',');
     }
 }
 
@@ -103,19 +103,19 @@ void Reserva::modificaFechasOcupadas(int fecha_maquina, std::string fecha_inicio
 }
 
 void Reserva::mostrarFechasOcupadas(){//Muestra el valor de las fechas ocupadas sin mostrar los usuarios que han realizado las reservas
-    	FILE* f;
-    	long medida;
-    	char* texto;
-		const char* nombre="fechas.txt";
-	   	f=fopen(nombre, "r");
-    	fseek(f, 0, SEEK_END);
-    	medida=ftell(f);
-    	rewind(f);
+    FILE* f;
+    long medida;
+    char* texto;
+	const char* nombre="fechas.txt";
+  	f=fopen(nombre, "r");
+    fseek(f, 0, SEEK_END);
+    medida=ftell(f);
+    rewind(f);
 
-   		texto=(char*)malloc (sizeof(char)*medida);
-   	 	fread(texto, medida+1, 1, f);
-    	std::cout<<texto<<std::endl;
-    	fclose(f);
+	texto=(char*)malloc (sizeof(char)*medida);
+   	fread(texto, medida+1, 1, f);
+    std::cout<<texto<<std::endl;
+    fclose(f);
 }
 
 bool Reserva::comprobacionHora(std::string hora){
@@ -143,7 +143,7 @@ bool Reserva::comprobarHoraDiaIgual(std::string fecha_inicio, std::string hora_i
         }
 		else{
 			std::cout<<ANSI_COLOR_RED "ERROR al introducir una hora final menor que la hora inicial en el mismo dia\n" ANSI_COLOR_RESET;
-    	return false;
+    		return false;
 		}
     }
 	return true;

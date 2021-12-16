@@ -7,8 +7,9 @@ class Maquina{
     private:
         int identMaq_;
         int nMaquinas_;
+        
     public:
-       inline Maquina(){};
+        inline Maquina(){};
         bool setnumMaquinas(int nMaquina);
         inline int getnumMaquinas(){return nMaquinas_;};
         bool setMaquinasDisponibles(int identMaq);

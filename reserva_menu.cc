@@ -65,8 +65,15 @@ int main(){
                 }break;
 
                 case 2:{
+<<<<<<< HEAD
                     if(ID<3){
                         std::cout<<ANSI_COLOR_RED "ERROR. USTED NO TIENE ACCESO A ESTE APARTADO\n" ANSI_COLOR_RESET;
+=======
+                    char confirmacion2;
+                    std::cout<<ANSI_COLOR_RED "¿Estas seguro de que tienes acceso al control de las maquinas? y/n \n" ANSI_COLOR_RESET; 
+                    std::cin>>confirmacion2;
+                    if(confirmacion2!='y'){
+>>>>>>> 8975ab12adffb79af0c455f77071132d906f5dbd
                         exit(0);
                     }
                     std::cout<<ANSI_COLOR_GREEN "ACCESO PERMITIDO\n" ANSI_COLOR_RESET;
@@ -83,6 +90,7 @@ int main(){
                 }break;
 
                 case 3:
+<<<<<<< HEAD
                         Recursos a;
                         int recursos;
                         std::cout<<"Introduzca el numero de recursos a restringir para los usuarios: ";
@@ -91,6 +99,18 @@ int main(){
                     if(a.setcomprueba(recursos)==false){
                          std::cout<<ANSI_COLOR_RED "No se pueden resevar esos recursos\n" ANSI_COLOR_RESET;             
                          exit(0);
+=======
+                    Recursos a;
+                    int recursos;
+                    std::cout<<"Introduzca el numero de recursos que quieres reservar: ";
+                    std::cin>>recursos;
+
+                    if(a.setcomprueba(recursos)){
+                       a.restringe();
+                    }
+                    else{
+                        std::cout<<ANSI_COLOR_RED "No se pueden resevar esos recursos\n" ANSI_COLOR_RESET;             
+>>>>>>> 8975ab12adffb79af0c455f77071132d906f5dbd
                     }
                     a.restringe();
                     break;

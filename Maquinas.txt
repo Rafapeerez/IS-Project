@@ -3,3 +3,6 @@ Maquina 2
 Maquina 3
 Maquina 4
 Maquina 5
+Maquina 6
+Maquina 7
+Maquina 8
