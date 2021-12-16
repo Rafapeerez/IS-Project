@@ -44,9 +44,7 @@ using namespace std;
         	exit(EXIT_FAILURE);
  	    }
 
-    string maximo;
-
-        cout << "Como administrador elija el máximo de recursos que los usuarios pueden reservar" << endl;
+    	string maximo=std::to_string(getcomprueba());
         cin >> maximo;
         setMaximo(maximo);
 

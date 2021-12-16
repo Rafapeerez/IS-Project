@@ -13,7 +13,7 @@ class Recursos{
         Recursos(std::string maximo);
         inline Recursos(){recursosmaquina_;}
         bool setcomprueba(int recursosmaquina); 
-        inline int getcomprueba()const {return recursosmaquina_;}
+        inline int getcomprueba(){return recursosmaquina_;}
         inline void setMaximo(std::string maximo) { maximo_ = maximo; }
         inline std::string getMaximo() { return maximo_; }
         bool setFichero();
